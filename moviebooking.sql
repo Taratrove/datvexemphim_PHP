@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1:3306
--- Thời gian đã tạo: Th10 14, 2023 lúc 04:23 AM
+-- Thời gian đã tạo: Th10 15, 2023 lúc 07:41 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.1.6
 
@@ -63,7 +63,9 @@ CREATE TABLE `booking` (
 --
 
 INSERT INTO `booking` (`id`, `user_id`, `seats`, `total_seats`, `booking_date`, `showtime_id`, `total_price`) VALUES
-(1, 2, 'A3, D4', 2, '2023-11-10', 1, '0.00');
+(1, 2, 'A3, D4', 2, '2023-11-10', 1, '0.00'),
+(11, 2, 'D3, A4', 10, '2023-11-14', 1, '100.00'),
+(13, 7, 'D3, A4', 10, '2023-11-14', 1, '100.00');
 
 -- --------------------------------------------------------
 
@@ -84,7 +86,7 @@ CREATE TABLE `feedback` (
 
 INSERT INTO `feedback` (`id`, `name`, `email`, `message`) VALUES
 (1, 'testuser', 'testuser@gmail.com', 'test'),
-(2, 'testuser', 'testuser@gmail.com', 'test');
+(3, 'Test', 'test@gmail.com', 'Test');
 
 -- --------------------------------------------------------
 
@@ -135,13 +137,13 @@ CREATE TABLE `movies` (
 --
 
 INSERT INTO `movies` (`id`, `title`, `director`, `release_date`, `genre_id`, `language`, `trailer_link`, `description`, `image`, `status`, `running`) VALUES
-(9, 'Avengers', 'Kevin Feige', '2012-04-11', 1, 'English', 'https://www.youtube.com/embed/eOrNdBpGMv8', 'Test', 'aven.jpg', 1, 1),
-(10, 'Rampage', 'Brad Peyton', '2018-04-13', 2, 'Hindi', '', '                                Jumanji is a 1995 American fantasy adventure film directed by Joe Johnston from a screenplay by Jonathan Hensleigh, Greg Taylor, and Jim Strain. Loosely based on Chris Van Allsburg\'s picture book of the same name, the film is the first installment of the Jumanji franc', 'rampage.jpg', 1, 0),
-(13, 'Chaal Jeevi Laiye', 'Vipul Mehta', '2019-01-07', 3, 'Gujarati', 'https://www.youtube.com/embed/y1NoFZPVTr0', '                Chaal Jeevi Laiye is a story of a Father-Son’s unplanned journey to escape a workaholic existence. The duo, Aditya Parikh and his father Bipin Chandra Parikh explore the meaning of life as they meet a stranger traveler named Ketki, who takes them on a journey of surprises and realiza', 'chaal-jivi-laiye.jpg', 1, 1),
-(14, 'Tanaji', 'Om Raut', '2020-01-10', 4, 'Hindi', 'https://www.youtube.com/embed/cffAGIYTEHU', '                Gulshan Kumar, T-Series & Ajay Devgn ffilms Presents official trailer of the most awaited bollywood movie TANHAJI -THE UNSUNG WARRIOR in 3D, Directed by Om Raut, will release on 10th January 2020.\r\nTanhaji- The Unsung Warrior is an Indian biographical period drama film based on the l', 'tanaji.jpeg', 1, 1),
-(15, 'Playing With Fire ', 'Andrea Sedlackova', '2019-11-06', 5, 'English', 'https://www.youtube.com/embed/fd5GlZUpfaM', '                Playing with Fire is a 2019 American family comedy film directed by Andy Fickman from a screenplay by Dan Ewen and Matt Lieberman based on a story by Ewen. The film stars John Cena, Keegan-Michael Key, John Leguizamo, Dennis Haysbert, Brianna Hildebrand and Judy Greer, and follows a ', 'movieposter_en.jpg', 1, 1),
-(16, 'Golmaal Again', 'Rohit Shetty', '2017-10-20', 6, 'Hindi', 'https://www.youtube.com/embed/VgQUwsUHdqc', 'Five orphan men return to the orphanage they grew up in to attend their mentor\'s funeral. However, they encounter the ghost of their childhood friend, Khushi, and help her attain salvation.', 'golmaal_again.jpg', 1, 0),
-(17, 'Shreshaah', 'Vishnuvardhan', '2021-08-21', 7, 'Hindi', 'https://www.youtube.com/embed/Q0FTXnefVBA', 'The life of Indian army captain Vikram Batra, awarded with the Param Vir Chakra, India\'s highest award for valour for his actions during the 1999 Kargil War.', 'shershah.jpg', 1, 0);
+(1, 'Black Panther: Wakanda Forever', 'Kevin Feige', '2020-11-11', 2, 'English', 'https://www.youtube.com/embed/RlOB3UALvrQ', 'Queen Ramonda, Shuri, M\'Baku, Okoye and the Dora Milaje fight to protect their nation from intervening world powers in the wake of King T\'Challa\'s death. As the Wakandans strive to embrace their next chapter, the heroes must band together with Nakia and Everett Ross to forge a new path for their bel', 'Wankanda.jpg', 1, 1),
+(2, 'Avengers', 'Kevin Feige', '2012-04-11', 1, 'English', 'https://www.youtube.com/embed/eOrNdBpGMv8', 'The Avengers began as a group of extraordinary individuals who were assembled to defeat Loki and his Chitauri army in New York City. Since then, the team has expanded its roster and faced a host of new threats, while dealing with their own turmoil.', 'aven.jpg', 1, 1),
+(4, 'Playing With Fire ', 'Andrea Sedlackova', '2019-11-06', 5, 'English', 'https://www.youtube.com/embed/fd5GlZUpfaM', ' Playing with Fire is a 2019 American family comedy film directed by Andy Fickman from a screenplay by Dan Ewen and Matt Lieberman based on a story by Ewen. The film stars John Cena, Keegan-Michael Key, John Leguizamo, Dennis Haysbert, Brianna Hildebrand and Judy Greer, and follows a ', 'movieposter_en.jpg', 1, 1),
+(5, 'Black Adam', 'Warner Bros', '2020-10-03', 4, 'English', 'https://www.youtube.com/embed/Fva_W_AF0IM?si=PhwudSNX7azpd_1Y', 'Black Adam was originally depicted as a supervillain and the ancient magical champion predecessor of Captain Marvel, who fought his way to modern times to challenge the hero and his Marvel Family associates.', 'blackadam.jpg', 1, 1),
+(6, 'Spider-Man: No Way Home', 'Jon Watts', '2021-12-17', 6, 'English', 'https://www.youtube.com/embed/JfVOs4VSpmA?si=g7oPJhyfn9g2ZHFt', 'With Spider-Mans identity now revealed, Peter asks Doctor Strange for help. When a spell goes wrong, dangerous foes from other worlds start to appear, forcing Peter to discover what it truly means to be Spider-Man.', 'spiderman.jpg', 1, 1),
+(7, 'Ant-Man and the Wasp: Quantumania', 'Peyton Reed', '2023-05-16', 7, 'English', 'https://www.youtube.com/embed/ZlNFpri-Y40?si=40E7qGgvqqPKTzaJ', 'The movie will see super-hero couple Scott Lang (Paul Rudd) and Hope van Dyne (Evangeline Lilly) reprise their roles as Ant-Man and the Wasp. They are joined by Michael Douglas and Michelle Pfeiffer, who return as Hopes parents, Hank Pym and Janet van Dyne. Kathryn Newton joins the cast as Cassie La', 'nguoikien.jpg', 1, 1),
+(8, 'Aquaman and the Lost Kingdom', 'DC Studios', '2023-12-22', 6, 'English', 'https://www.youtube.com/embed/FV3bqvOHRQo?si=jloFhthFfHm1a9Ek', 'Aquaman and the Lost Kingdom is the much-anticipated sequel to 2018s Aquaman. It will once again be directed by James Wan, but well have to wait just that little bit longer to see it on our screens.', 'aquaman.jpg', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -151,7 +153,7 @@ INSERT INTO `movies` (`id`, `title`, `director`, `release_date`, `genre_id`, `la
 
 CREATE TABLE `screens` (
   `id` int(11) NOT NULL,
-  `threater_id` int(11) DEFAULT 0,
+  `theater_id` int(11) DEFAULT 0,
   `screen_number` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
@@ -159,8 +161,12 @@ CREATE TABLE `screens` (
 -- Đang đổ dữ liệu cho bảng `screens`
 --
 
-INSERT INTO `screens` (`id`, `threater_id`, `screen_number`) VALUES
-(1, 1, 1);
+INSERT INTO `screens` (`id`, `theater_id`, `screen_number`) VALUES
+(1, 1, 1),
+(2, 1, 2),
+(7, 1, 3),
+(6, 1, 4),
+(17, 1, 5);
 
 -- --------------------------------------------------------
 
@@ -182,10 +188,10 @@ CREATE TABLE `showtimes` (
 --
 
 INSERT INTO `showtimes` (`id`, `movie_id`, `theater_id`, `screen_id`, `showtime`, `price`) VALUES
-(1, 9, 1, 1, '2023-11-10 19:46:00', '0.00'),
-(2, 9, 1, 1, '2023-11-18 21:19:15', '0.00'),
-(3, 9, 1, 1, '2023-11-11 21:19:29', '0.00'),
-(4, 9, 1, 1, '2023-11-14 21:19:41', '0.00');
+(1, 9, 1, 1, '2023-11-15 15:36:00', '10.00'),
+(3, 9, 1, 1, '2023-11-10 17:21:00', '0.00'),
+(5, 21, 1, 1, '2023-11-15 23:34:00', '0.00'),
+(7, 9, 1, 1, '2023-11-16 00:21:00', '0.00');
 
 -- --------------------------------------------------------
 
@@ -205,7 +211,13 @@ CREATE TABLE `theaters` (
 --
 
 INSERT INTO `theaters` (`id`, `theater_name`, `theater_address`, `theater_phone`) VALUES
-(1, 'AZIR 2D', 'Nha Trang', '0123456789');
+(1, 'AZIR 2D', 'Nha Trang', '0123456789'),
+(2, 'AZID 3D', 'Test sdas', '0928282828'),
+(4, 'AZID 4D', 'Test', '0928282828'),
+(11, 'AZIR 8D', 'test', '10248129840'),
+(12, 'AZIR 9D', 'test', '10248129840'),
+(13, 'AZIR 9D', 'test', '10248129840'),
+(15, 'AZIR 11D', 'Test2', '0931322323');
 
 -- --------------------------------------------------------
 
@@ -230,7 +242,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `name`, `email`, `password`, `phone`, `birthday`, `image`, `gender`) VALUES
-(2, 'testuser', 'Test', 'testuser@gmail.com', '$2y$10$6noXYUXjQoG1ms1DacPxMO8dtde.ppTMbOeAqZKyC0as.L/nHC2gG', '0929322222', 'testuser', '64349336_422464855151892_7422161348181622784_n.jpg', b'0');
+(2, 'testuser', 'Test', 'testuser@gmail.com', '$2y$10$TX1iiEctUEHXeZvpxXjeieKZWineWiK81VqodvXmVKxHDpZ8DvePa', '0929322222', '2023-11-16', '64349336_422464855151892_7422161348181622784_n.jpg', b'1'),
+(7, 'tindan', 'Jin Pham', 'tindan@gmail.com', '$2y$10$tnG7n.Tl8/YWtF4WH9qwbu6l5.N1bQx5ApcucfFlaYVSsBHku2ypC', '02931322322', '2023-11-09', '391757454_718135037010319_7638684070599160427_n.jpg', b'1'),
+(10, 'tindan2', 'tindan', 'tindan@gmail.com', '$2y$10$Yu8Syazb9/WY0HK70WOi0u6p5IFQhmLn/N6Qw7EFi4YrvFN8YP0S6', '02931322322', '2023-11-15', '118914956_1313702765640982_9209319587640248673_n.jpg', b'1');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -274,7 +288,8 @@ ALTER TABLE `movies`
 -- Chỉ mục cho bảng `screens`
 --
 ALTER TABLE `screens`
-  ADD PRIMARY KEY (`id`) USING BTREE;
+  ADD PRIMARY KEY (`id`) USING BTREE,
+  ADD UNIQUE KEY `theater_screen_id` (`theater_id`,`screen_number`);
 
 --
 -- Chỉ mục cho bảng `showtimes`
@@ -295,7 +310,8 @@ ALTER TABLE `theaters`
 -- Chỉ mục cho bảng `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`) USING BTREE;
+  ADD PRIMARY KEY (`id`) USING BTREE,
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- AUTO_INCREMENT cho các bảng đã đổ
@@ -311,13 +327,13 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT cho bảng `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT cho bảng `feedback`
 --
 ALTER TABLE `feedback`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `genre`
@@ -329,25 +345,31 @@ ALTER TABLE `genre`
 -- AUTO_INCREMENT cho bảng `movies`
 --
 ALTER TABLE `movies`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT cho bảng `screens`
 --
 ALTER TABLE `screens`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT cho bảng `showtimes`
+--
+ALTER TABLE `showtimes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT cho bảng `theaters`
 --
 ALTER TABLE `theaters`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
@@ -367,12 +389,10 @@ ALTER TABLE `movies`
   ADD CONSTRAINT `movies_ibfk_1` FOREIGN KEY (`genre_id`) REFERENCES `genre` (`id`);
 
 --
--- Các ràng buộc cho bảng `showtimes`
+-- Các ràng buộc cho bảng `screens`
 --
-ALTER TABLE `showtimes`
-  ADD CONSTRAINT `showtimes_ibfk_1` FOREIGN KEY (`movie_id`) REFERENCES `movies` (`id`),
-  ADD CONSTRAINT `showtimes_ibfk_2` FOREIGN KEY (`theater_id`) REFERENCES `theaters` (`id`),
-  ADD CONSTRAINT `showtimes_ibfk_3` FOREIGN KEY (`screen_id`) REFERENCES `screens` (`id`);
+ALTER TABLE `screens`
+  ADD CONSTRAINT `screens_ibfk_1` FOREIGN KEY (`theater_id`) REFERENCES `theaters` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

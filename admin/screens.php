@@ -22,14 +22,17 @@
 
             <div class="row">
                 <div class="col-10">
-                    <h2>Feedback</h2>
+                    <h2>Screen</h2>
                 </div>
                 <div class="col-2">
-                    <button type="button" data-toggle="modal" data-target="#add_show" class="btn btn-primary btn-sm">Add Show</button>
+                    <button type="button" data-toggle="modal" data-target="#add_show" class="btn btn-primary btn-sm">Add Screen</button>
                 </div>
 
-
             </div>
+
+            <?php
+            include_once("templates/error.php");
+            ?>
 
             <div class="table-responsive">
                 <table class="table table-striped table-sm">
@@ -38,6 +41,7 @@
                         <th>Id</th>
                         <th>Theater Name</th>
                         <th>Screen Number</th>
+                        <th>Action</th>
                     </tr>
                     </thead>
                     <tbody id="product_list">
@@ -89,16 +93,24 @@
                                                     <div class="col-12">
                                                         <div class="form-group">
                                                             <label>Theater Name</label>
-                                                            <select class="form-control category_list" name="edit-theater-id">
+                                                            <select class="form-control category_list"
+                                                                    name="edit-theater-id">
                                                                 <option>Select Theater Name</option>
                                                                 <?php
                                                                 $resultTheaters = mysqli_query($conn, "SELECT * FROM theaters");
 
                                                                 if (mysqli_num_rows($resultTheaters) > 0) {
                                                                     while ($rowTheaters = mysqli_fetch_array($resultTheaters)) {
-                                                                        ?>
-                                                                        <option value="<?php echo $rowTheaters['id']; ?>"><?php echo $rowTheaters['theater_name']; ?></option>
-                                                                        <?php
+                                                                        if ($rowTheaters['id'] == $row['theater_id']) {
+                                                                            ?>
+                                                                            <option value="<?php echo $rowTheaters['id']; ?>"
+                                                                                    selected><?php echo $rowTheaters['theater_name']; ?></option>
+                                                                            <?php
+                                                                        } else {
+                                                                            ?>
+                                                                            <option value="<?php echo $rowTheaters['id']; ?>"><?php echo $rowTheaters['theater_name']; ?></option>
+                                                                            <?php
+                                                                        }
                                                                     }
                                                                 }
                                                                 ?>
@@ -109,14 +121,18 @@
                                                     <div class="col-12">
                                                         <div class="form-group">
                                                             <label>Screen Number</label>
-                                                            <input class="form-control" name="edit-screen-number" id="edit-screen-number"
-                                                                   placeholder="Enter Theater Name" value="<?php echo $row['screen_number']; ?>">
+                                                            <input type="text" class="form-control"
+                                                                   name="edit-screen-number" id="edit-screen-number"
+                                                                   placeholder="Enter Theater Name"
+                                                                   value="<?php echo $row['screen_number']; ?>">
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-12">
+                                                    <input type="hidden" name="e_id" value="<?php echo $row['id']; ?>">
 
-                                                        <input type="submit" name="update-screen-btn" id="update-screen-btn"
+                                                    <div class="col-12">
+                                                        <input type="submit" name="update-screen-btn"
+                                                               id="update-screen-btn"
                                                                value="update" class="btn btn-primary">
                                                     </div>
                                                 </div>
@@ -141,7 +157,8 @@
                                             <form id="insert_movie" action="exec/screens.php" method="post">
                                                 <h4> Xóa "<?php echo $row['id']; ?>" ? </h4>
                                                 <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
-                                                <input type="submit" name="deletetime" id="deletetime" value="OK"
+                                                <input type="submit" name="delete-screen-btn" id="delete-screen-btn"
+                                                       value="OK"
                                                        class="btn btn-primary">
                                             </form>
 
@@ -169,7 +186,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Product</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Add Screen</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -182,7 +199,7 @@
                             <div class="form-group">
                                 <label>Theater Name</label>
                                 <select class="form-control category_list" name="theater-id">
-                                    <option>Select Username</option>
+                                    <option>Select Theatername</option>
                                     <?php
                                     $result = mysqli_query($conn, "SELECT * FROM theaters");
                                     if (mysqli_num_rows($result) > 0) {
@@ -199,8 +216,8 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label>Screen Number</label>
-                                <input class="form-control" name="screen-number" id="screen-number"
-                                       placeholder="Enter Theater Name">
+                                <input class="form-control" name="number" id="screen-number"
+                                       placeholder="Enter Screen Number" required>
                             </div>
                         </div>
 
@@ -208,7 +225,7 @@
                         <input type="hidden" name="add_product" value="1">
                         <div class="col-12">
 
-                            <input type="submit" name="add-screen-btn" id="add-screen-btn" value="submit" class="btn btn-primary">
+                            <input type="submit" name="add-screen-btn" id="add-screen-btn" value="Add Screen" class="btn btn-primary">
                         </div>
 
 
@@ -222,7 +239,6 @@
 
 
     <?php include_once("./templates/footer.php"); ?>
-
 
 
     </script>
