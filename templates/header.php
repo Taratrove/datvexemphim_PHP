@@ -98,7 +98,7 @@
                                 <div class="dropdown_menu">
                                     <button class="dropbtn">&#9662;</button>
                                     <div class="dropdown_content">
-                                        <a href="#">account</a>
+                                        <a href="../inforuser.php">account</a>
                                         <a href="#">history buy</a>
                                         <a href="../logout.php"> Logout</a>
                             </div>
