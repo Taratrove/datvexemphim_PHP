@@ -4,8 +4,8 @@
     
 
 <link rel="stylesheet" href="./css/bootstrap.min.css" crossorigin="anonymous">
-
-<link rel="stylesheet" href="./css/all.css" crossorigin="anonymous">
+<link rel="stylesheet" href="./css/font-awesome.min.css" type="text/css">
+<!--<link rel="stylesheet" href="./css/all.css" crossorigin="anonymous">-->
 
 
     <style>
@@ -26,9 +26,11 @@
           font-size: 3.5rem;
         }
       }
+
     </style>
     <!-- Custom styles for this template -->
     <link href="./css/dashboard.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/movies.css">
   </head>
 
  <body>

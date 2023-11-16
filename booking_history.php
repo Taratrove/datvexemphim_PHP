@@ -136,7 +136,7 @@ include("templates/header.php");
                                     movies.title,
                                     theaters.theater_name,
                                     booking.total_price,
-                                    screens.screen_number 
+                                    screens.screen_name
                                 FROM
                                     booking
                                     INNER JOIN users ON booking.user_id = users.id
@@ -147,6 +147,7 @@ include("templates/header.php");
                                 WHERE user_id = $user_id";
                                     $booking_list = $conn->query($queryBooking);
 
+                                if ($booking_list && mysqli_num_rows($booking_list) > 0) {
                                     while ($booking = $booking_list->fetch_assoc()) {
                                         echo "<tr>";
                                         echo "<td>{$booking['showtime']}</td>";
@@ -156,9 +157,12 @@ include("templates/header.php");
                                         echo "<td>{$booking['title']}</td>";
                                         echo "<td>{$booking['theater_name']}</td>";
                                         echo "<td>{$booking['total_price']}</td>";
-                                        echo "<td>{$booking['screen_number']}</td>";
+                                        echo "<td>{$booking['screen_name']}</td>";
                                         echo "</tr>";
                                     }
+                                } else {
+                                    echo "<tr><td colspan='12'>No records found</td></tr>";
+                                }
                                     ?>
                                     </tbody>
                                 </table>
@@ -170,38 +174,6 @@ include("templates/header.php");
         </div>
     </div>
 </div>
-
-<!-- Change Password Modal -->
-<div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="changePasswordModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="changePasswordModalLabel">Thay đổi mật khẩu</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="change_password.php" method="post">
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="currentPassword">Mật khẩu cũ:</label>
-                        <input type="password" class="form-control" id="currentPassword" name="currentPassword" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="newPassword">Mật khẩu mới:</label>
-                        <input type="password" class="form-control" id="newPassword" name="newPassword" required>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                    <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
 
 
 <?php

@@ -22,4 +22,12 @@
         padding: 0 .75rem;
     }
 
+    .object-fit-cover {
+        object-fit: cover;
+    }
+
+    .selected-fix {
+        padding: 0 2rem;
+    }
+
 </style>
