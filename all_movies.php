@@ -119,7 +119,7 @@ include("templates/header.php");
         <div class="col-md-3 left rounded">
             <div class="card border-1 ml-3 rounded">
                 <div class="list-group px-3 py-1">
-                    <h3 class="part-line">Tìm kiếm</h3>
+                    <h3 class="part-line">Search</h3>
                     <div class="input-group mb-3">
                         <input type="text" name="search" id="search" class="form-control" placeholder="Nhập từ khóa"
                                aria-label="Search" aria-describedby="search-icon">
@@ -128,7 +128,7 @@ include("templates/header.php");
 
 
                 <div class="list-group px-3 py-1">
-                    <h3 class="part-line">Thể loại</h3>
+                    <h3 class="part-line">Category</h3>
                     <div class="card border-0">
                         <?php
                         $query = "
@@ -156,7 +156,7 @@ include("templates/header.php");
                 </div>
 
                 <div class="list-group px-3 py-1 mb-3">
-                    <h3 class="part-line">Ngôn ngữ</h3>
+                    <h3 class="part-line">Language</h3>
                     <div class="card border-0">
                         <?php
                         $query = "

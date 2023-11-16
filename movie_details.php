@@ -181,14 +181,14 @@ $id = $row['id'];
                                           name="calendar-outline"></ion-icon> <?php echo $row['release_date']; ?>
                             </div>
                             <div class="mb-4">
-                                <h4>Giám đốc: <?php echo $row['director']; ?></h4>
+                                <h4>Director: <?php echo $row['director']; ?></h4>
                             </div>
                             <div class="mb-4">
-                                <h4>Thể loại: <?php echo $row['genre_name']; ?></h4>
+                                <h4>Category: <?php echo $row['genre_name']; ?></h4>
                             </div>
 
                             <div class="mb-4">
-                                <h4>Ngôn ngữ: <?php echo $row['language']; ?></h4>
+                                <h4>Language: <?php echo $row['language']; ?></h4>
                             </div>
                         </div>
                     </div>
@@ -198,7 +198,7 @@ $id = $row['id'];
                         <div class="col-md-12">
                             <div class="row px-sm-4 px-lg-0">
                                 <div class="col-md-12 pb-2 mb-4 text-black border-bottom border-danger">
-                                    <h4>Lịch chiếu</h4>
+                                    <h4>Showtimes</h4>
                                 </div>
                             </div>
                             <div class="row justify-content-center mb-4">
