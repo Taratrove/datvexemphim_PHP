@@ -86,18 +86,19 @@ if (isset($_POST['update-user-btn'])) {
         $edit_image = $edit_old_image;
     }
     try {
-        $update_record = mysqli_query($conn, "UPDATE `users` SET 
+        $query = "UPDATE `users` SET 
         `username` = '$edit_username', 
         `name` = '$edit_name', 
         `email` = '$edit_email', 
         `phone` = '$edit_phone', 
         `birthday` = '$edit_birthday', 
-        `gender` = '$edit_gender' ,
+        `gender` = $edit_gender ,
         `image` = '$edit_image'
-        WHERE `id` = '$e_id'");
+        WHERE `id` = '$e_id'";
+        $update_record = mysqli_query($conn, $query);
 
         if ($update_record) {
-            $msg = "Update successful";
+            $msg = "Update successful $query";
             $error = 0;
         } else {
             throw new Exception("Update unsuccessful");

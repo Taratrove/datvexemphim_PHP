@@ -20,6 +20,7 @@
                             <li><a href="about.php">About Us</a></li>
                             <li><a href="feedback.php">Feedback</a></li>
                             <li><a href="contact.php">Contact Us</a></li>
+                            <li><a href="./btth">Bài tập thực hành</a></li>
                         </ul>
                     </div>
                 </div>

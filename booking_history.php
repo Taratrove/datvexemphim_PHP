@@ -84,9 +84,9 @@ include("templates/header.php");
             </div>
         </div>
 
-        <div class="col-xl-7">
+        <div class="col-xl-8">
             <div class="row">
-                <div class="col-12">
+                <div class="col-11">
                     <nav class="navbar navbar-expand-sm navbar-light bg-light mb-4 rounded"
                          style="border-bottom: 1px solid rgb(160 163 167);">
                         <ul class="navbar-nav w-100 d-flex justify-content-between font-weight-bold text-capitalize">
@@ -107,7 +107,7 @@ include("templates/header.php");
                 </div>
             </div>
             <div class="row">
-                <div class="col-12">
+                <div class="col-11">
                     <div class="card border-0 shadow-lg mb-4 rounded-0">
                         <div class="card-body">
                             <h4 class="mb-4">Booking History</h4>
@@ -123,12 +123,14 @@ include("templates/header.php");
                                         <th>Theater</th>
                                         <th>Total Price</th>
                                         <th>Screen Number</th>
+                                        <th>Actions</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <?php
 
                                     $queryBooking = "SELECT
+                                    booking.id,
                                     showtimes.showtime,
                                     booking.booking_date,
                                     booking.seats,
@@ -158,6 +160,7 @@ include("templates/header.php");
                                         echo "<td>{$booking['theater_name']}</td>";
                                         echo "<td>{$booking['total_price']}</td>";
                                         echo "<td>{$booking['screen_name']}</td>";
+                                        echo "<td><a class='btn btn-info' href='ticket_show.php?bookingId=".$booking['id']."'>Ticket</a></td>";
                                         echo "</tr>";
                                     }
                                 } else {

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1:3306
--- Thời gian đã tạo: Th10 16, 2023 lúc 04:24 PM
+-- Thời gian đã tạo: Th10 17, 2023 lúc 06:02 PM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.1.6
 
@@ -63,8 +63,11 @@ CREATE TABLE `booking` (
 --
 
 INSERT INTO `booking` (`id`, `user_id`, `seats`, `total_seats`, `booking_date`, `showtime_id`, `total_price`) VALUES
-(1, 2, 'A3, D4', 2, '2023-11-10', 1, '0.00'),
-(11, 2, 'D3, A4', 10, '2023-11-14', 1, '100.00');
+(14, 2, 'A3,A4', 2, '2023-11-17', 13, '400.00'),
+(16, 2, 'B1,B2', 2, '2023-11-17', 15, '800.00'),
+(18, 2, 'C4,D1', 2, '2023-11-17', 15, '800.00'),
+(35, 2, 'B4,F4', 2, '2023-11-17', 13, '400.00'),
+(40, 2, 'F1', 1, '2023-11-17', 15, '400.00');
 
 -- --------------------------------------------------------
 
@@ -84,8 +87,7 @@ CREATE TABLE `feedback` (
 --
 
 INSERT INTO `feedback` (`id`, `name`, `email`, `message`) VALUES
-(1, 'testuser', 'testuser@gmail.com', 'test'),
-(3, 'Test', 'test@gmail.com', 'Test');
+(1, 'testuser', 'testuser@gmail.com', 'test');
 
 -- --------------------------------------------------------
 
@@ -142,8 +144,7 @@ INSERT INTO `movies` (`id`, `title`, `director`, `release_date`, `genre_id`, `la
 (5, 'Black Adam', 'Warner Bros', '2020-10-03', 4, 'English', 'https://www.youtube.com/embed/Fva_W_AF0IM?si=PhwudSNX7azpd_1Y', 'Black Adam was originally depicted as a supervillain and the ancient magical champion predecessor of Captain Marvel, who fought his way to modern times to challenge the hero and his Marvel Family associates.', 'blackadam.jpg', 1, 1),
 (6, 'Spider-Man: No Way Home', 'Jon Watts', '2021-12-17', 6, 'English', 'https://www.youtube.com/embed/JfVOs4VSpmA?si=g7oPJhyfn9g2ZHFt', 'With Spider-Mans identity now revealed, Peter asks Doctor Strange for help. When a spell goes wrong, dangerous foes from other worlds start to appear, forcing Peter to discover what it truly means to be Spider-Man.', 'spiderman.jpg', 1, 1),
 (7, 'Ant-Man and the Wasp: Quantumania', 'Peyton Reed', '2023-05-16', 7, 'English', 'https://www.youtube.com/embed/ZlNFpri-Y40?si=40E7qGgvqqPKTzaJ', 'The movie will see super-hero couple Scott Lang (Paul Rudd) and Hope van Dyne (Evangeline Lilly) reprise their roles as Ant-Man and the Wasp. They are joined by Michael Douglas and Michelle Pfeiffer, who return as Hopes parents, Hank Pym and Janet van Dyne. Kathryn Newton joins the cast as Cassie La', 'nguoikien.jpg', 1, 1),
-(8, 'Aquaman and the Lost Kingdom', 'DC Studios', '2023-12-22', 6, 'English', 'https://www.youtube.com/embed/FV3bqvOHRQo?si=jloFhthFfHm1a9Ek', 'Aquaman and the Lost Kingdom is the much-anticipated sequel to 2018s Aquaman. It will once again be directed by James Wan, but well have to wait just that little bit longer to see it on our screens.', 'aquaman.jpg', 1, 0),
-(25, 'test', 'Chien Thang', '2023-11-16', 1, 'Test', 'https://www.youtube.com/embed/qDFAYyMOxuw?si=QjV3r5mkR9ZatIRz', 'des', '2GrF07.jpeg', 0, 1);
+(8, 'Aquaman and the Lost Kingdom', 'DC Studios', '2023-12-22', 1, 'Test', 'https://www.youtube.com/embed/FV3bqvOHRQo?si=jloFhthFfHm1a9Ek', 'Aquaman and the Lost Kingdom is the much-anticipated sequel to 2018s Aquaman. It will once again be directed by James Wan, but well have to wait just that little bit longer to see it on our screens.', 'aquaman.jpg', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -187,15 +188,15 @@ CREATE TABLE `showtimes` (
 --
 
 INSERT INTO `showtimes` (`id`, `movie_id`, `theater_id`, `screen_id`, `showtime`, `price`) VALUES
-(1, 9, 1, 1, '2023-11-15 15:36:00', '10.00'),
-(3, 9, 1, 1, '2023-11-10 17:21:00', '0.00'),
-(5, 21, 1, 1, '2023-11-15 23:34:00', '0.00'),
-(7, 9, 1, 1, '2023-11-16 00:21:00', '0.00'),
-(8, 1, 1, 1, '2023-11-17 15:14:00', '0.00'),
-(9, 1, 1, 2, '2023-11-17 20:56:00', '0.00'),
-(10, 1, 2, 3, '2023-11-17 21:00:00', '0.00'),
-(11, 2, 1, 1, '2023-11-16 23:00:00', '0.00'),
-(12, 1, 1, 1, '2023-11-17 20:15:00', '0.00');
+(13, 1, 1, 1, '2023-11-18 20:14:00', '200.00'),
+(14, 2, 1, 2, '2023-11-18 20:20:00', '300.00'),
+(15, 1, 2, 3, '2023-11-18 20:20:00', '400.00'),
+(16, 1, 1, 2, '2023-11-18 20:20:00', '500.00'),
+(17, 1, 1, 1, '2023-11-18 22:21:00', '300.00'),
+(18, 1, 2, 4, '2023-11-18 20:33:00', '300.00'),
+(20, 1, 1, 1, '2023-11-19 20:42:00', '10.00'),
+(21, 1, 1, 2, '2023-11-19 21:42:00', '10.00'),
+(22, 1, 1, 4, '2023-11-19 21:43:00', '20.00');
 
 -- --------------------------------------------------------
 
@@ -216,12 +217,7 @@ CREATE TABLE `theaters` (
 
 INSERT INTO `theaters` (`id`, `theater_name`, `theater_address`, `theater_phone`) VALUES
 (1, 'AZIR 2D', 'Nha Trang', '0123456789'),
-(2, 'AZID 3D', 'Test sdas', '0928282828'),
-(4, 'AZID 4D', 'Test', '0928282828'),
-(11, 'AZIR 8D', 'test', '10248129840'),
-(12, 'AZIR 9D', 'test', '10248129840'),
-(13, 'AZIR 9D', 'test', '10248129840'),
-(15, 'AZIR 11D', 'Test2', '09313223234');
+(2, 'AZID 3D', 'Nha Trang', '0928282828');
 
 -- --------------------------------------------------------
 
@@ -246,7 +242,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `name`, `email`, `password`, `phone`, `birthday`, `image`, `gender`) VALUES
-(2, 'testuser', 'test', 'test@gmail.com', '$2y$10$EeJj.5IbcZmlrR2Q7iqCeOrNZFibuj1ElNuRGVI7dEwilkDQvdQn6', '1293132232', '2023-11-16', 'avatar-uid-2.jpg', b'1'),
+(2, 'testuser', 'test', 'test@gmail.com', '$2y$10$hqww.h10Dr9eXxvNCWxY9uwo4NsbvUIPkeRLA75KEJURr1qCKqf1K', '1293132232', '2023-11-16', 'avatar-uid-2.jpg', b'1'),
 (16, 'testuser3', 'Jin Pham', 'user@demo.com', '$2y$10$YH5hyQiGt6nfrd18SHNvQeYrF3jkJl1yv/qVu5asvhHH5P7pc4Qc6', '0929322222', '2023-11-17', 'avatar-uid-16.jpg', b'0'),
 (17, 'testuser6', 'Test Admin', 'test@gmail.com', '$2y$10$DqIMEqyK0Frs8RFEer9Zqe/VJsSXzbsxp4bXp.I/DXnyB6.S4A1Km', '0928282828', '2023-11-17', 'avatar-uid-17.jpg', b'0'),
 (18, 'testuser7', 'Test Admin', 'test@gmail.com', '$2y$10$w5kgwrR7EnJR.gOP3C1RuOWcRPdU6KVRF0MOCXviCtWoLe.2YNH5q', '0928282828', '2023-11-17', 'avatar-uid-18.jpeg', b'0');
@@ -267,6 +263,7 @@ ALTER TABLE `admin`
 --
 ALTER TABLE `booking`
   ADD PRIMARY KEY (`id`) USING BTREE,
+  ADD UNIQUE KEY `seats` (`seats`),
   ADD KEY `user_id` (`user_id`),
   ADD KEY `showtime_id` (`showtime_id`);
 
@@ -332,13 +329,13 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT cho bảng `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT cho bảng `feedback`
 --
 ALTER TABLE `feedback`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `genre`
@@ -356,25 +353,25 @@ ALTER TABLE `movies`
 -- AUTO_INCREMENT cho bảng `screens`
 --
 ALTER TABLE `screens`
-  MODIFY `id` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT cho bảng `showtimes`
 --
 ALTER TABLE `showtimes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT cho bảng `theaters`
 --
 ALTER TABLE `theaters`
-  MODIFY `id` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- Các ràng buộc cho các bảng đã đổ

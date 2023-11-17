@@ -73,7 +73,7 @@ if (isset($_POST['username'], $_POST['email'], $_POST['message'])) {
                             <div class="row">
                                 <div class="col-md-6 form-group">
                                     <input type="text" class="form-control" name="username" id="feedbackname"
-                                           placeholder="First name" required pattern="[a-zA-Z]+">
+                                           placeholder="First name" required pattern="[a-zA-Z ]+">
                                 </div>
                             </div>
                             <div class="row">

@@ -34,32 +34,40 @@ if (!isset($_SESSION['username'])) {
 
 <body>
 <div class="container py-5">
+
     <div class="row mb-4">
         <div class="col-lg-8 mx-auto text-center">
             <h1 class="display-6">BOOKING SUMMARY</h1>
         </div>
     </div>
+
     <div class="row">
         <div class="col-lg-6 mx-auto">
-            <div class="card">
-                <div class="card-header">
-                    <div class="tab-content">
-                        <div class="row">
-                            <?php
-                            require_once("config/db_connect.php");
+            <p id="msg" class="pl-3 text-danger"></p>
+            <div class="card bill-card">
+                <div class="card-header bill-header">
+                    <div class="row">
+                        <h5 class="card-title">Booking Details</h5>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <?php
+                        require_once("config/db_connect.php");
 
-                            $showTimeId = $_POST['showtimeId'];
-                            $selected_seats = $_POST['selected-seats'];
-                            $total_seats = $_POST['total-seats'];
+                        $showTimeId = $_POST['showtimeId'];
+                        $selected_seats = $_POST['selected-seats'];
+                        $total_seats = $_POST['total-seats'];
 
-                            $username = $_SESSION['username'];
-                            if (isset($_POST['submit'])) {
+                        $username = $_SESSION['username'];
+                        if (isset($_POST['submit'])) {
 //                                $queryUser = "SELECT u.username, u.email, u.mobile, u.city, t.theater FROM users u INNER JOIN theater_show t ON u.username = '" . $username . "' WHERE t.show = '" . $show . "'"
-                                $queryUser = "SELECT * from users WHERE username = '" . $username . "'";
-                                $resultUser = mysqli_query($conn, $queryUser);
-                                $queryShowTimeInfo = "SELECT
+                            $queryUser = "SELECT * from users WHERE username = '" . $username . "'";
+                            $resultUser = mysqli_query($conn, $queryUser);
+                            $queryShowTimeInfo = "SELECT
                                         screens.screen_name,
                                         movies.title,
+                                        movies.image as movie_image,
                                         theaters.theater_name,
                                         theaters.theater_address,
                                         DATE_FORMAT(st.showtime, '%Y-%m-%d') AS show_date, 
@@ -70,51 +78,63 @@ if (!isset($_SESSION['username'])) {
                                 INNER JOIN screens ON st.screen_id = screens.id
                                 WHERE st.id='" . $showTimeId . "'";
 
-                                $resultInfo = $conn->query($queryShowTimeInfo)->fetch_array();
 
-                                $movieTitle = $resultInfo['title'];
-                                $theater_name = $resultInfo['theater_name'];
-                                $theater_address = $resultInfo['theater_address'];
-                                $showDate = $resultInfo['show_date'];
-                                $showTime = $resultInfo['show_time'];
-                                $seats = explode(",", $selected_seats);
-                                $price = 0;
-                                if (mysqli_num_rows($resultUser) > 0) {
-                                    while ($row = mysqli_fetch_array($resultUser)) {
-                                        echo '<div class="col-lg-6">
-                                                Your Name: ' . $row['name'] . '<br>
-                                                Birthday: ' . $row['birthday'] . '<br>
-                                                Phone no.: ' . $row['phone'] . '<br>
-                                                Movie Name: ' . $movieTitle . '<br>
-                                                Seats: ' . $selected_seats . ' <br>
-                                                Show Date: ' . $showDate . '
-                                          </div>
-                                          <div class="col-lg-6">
-                                                Email: ' . $row['email'] . '<br>
-                                                Gender: ' . (($row['gender'] == 0) ? "Male" : "Female") . '<br>
-                                                Theater: ' . $theater_name . '<br>  
-                                                Total Seats: ' . $_POST['total-seats'] . ' <br>
-                                                Time: ' . $showTime . '<br>
-                                                Booking Date: ' . date("D-m-y", strtotime('today')) . '
-                                          </div>';
-                                    }
+                            $resultInfo = $conn->query($queryShowTimeInfo)->fetch_array();
+
+                            $movieTitle = $resultInfo['title'];
+                            $movie_image = $resultInfo['movie_image'];
+                            $theater_name = $resultInfo['theater_name'];
+                            $theater_address = $resultInfo['theater_address'];
+                            $showDate = $resultInfo['show_date'];
+                            $showTime = $resultInfo['show_time'];
+                            $seats = explode(",", $selected_seats);
+                            $price = 0;
+                            if (mysqli_num_rows($resultUser) > 0) {
+                                $row = mysqli_fetch_array($resultUser);
+                                    ?>
+                                    <div class="col-lg-12">
+                                        <p>Your Name: <?= $row['name'] ?><br></p>
+                                        <p>Phone number.: <?= $row['phone'] ?><br></p>
+                                        <p>Email: <?= $row['email'] ?><br></p>
+                                        <p>Gender: <?= (($row['gender'] == 0) ? "Male" : "Female") ?><br></p>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-lg-4 pl-3">
+                                                <img src="uploads/<?= $movie_image ?>" alt="" class="rounded img-fluid h-100" style="object-fit: cover">
+                                            </div>
+                                            <div class="col-lg-8 p-3">
+                                                <p>Movie Name: <?= $movieTitle ?><br></p>
+                                                <p>Theater: <?= $theater_name ?><br></p>
+                                                <p>Show Date: <?= $showDate ?></p>
+                                                <p>Time: <?= $showTime ?><br></p>
+                                                <hr>
+                                                <p>Seats: <?= $selected_seats ?> <br></p>
+                                                <p>Total Seats: <?= $_POST['total-seats'] ?> <br></p>
+                                                <p>Booking Date: <?= date("l, d-m-Y", strtotime('today')) ?></p>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <p align="right">Total Price: <?= $_POST['total_price'] ?>$</p>
+                                    </div>
+
+                                    <?php
                                 }
-                            }
-                            ?>
-                            <input type="hidden" id="movie" value="<?php echo $movieTitle; ?>">
-                            <input type="hidden" id="time" value="<?php echo $showDate; ?>">
-                            <input type="hidden" id="time" value="<?php echo $showTime; ?>">
-                            <input type="hidden" id="seats" value="<?php echo $selected_seats; ?>">
-                            <input type="hidden" id="total-seats" value="<?php echo $total_seats ?>">
-                            <input type="hidden" id="price" value="0">
-                        </div>
-
-                        <div class="card-footer">
-                            <button type="submit" id="payment"
-                                    class="subscribe btn btn-primary btn-block shadow-sm"> Confirm Payment
-                            </button>
-                        </div>
+                        }
+                        ?>
+                        <input type="hidden" id="showtimeId" value="<?php echo $showTimeId; ?>">
+                        <input type="hidden" id="userId" value="<?php echo $row['id']; ?>">
+                        <input type="hidden" id="seats" value="<?php echo $selected_seats; ?>">
+                        <input type="hidden" id="total-seats" value="<?php echo $total_seats ?>">
+                        <input type="hidden" id="total-price" value="<?php echo $_POST['total_price'] ?>">
+                        <input type="hidden" id="booking-date" value="<?php echo date("Y-m-d", strtotime('today')) ?>">
                     </div>
+                </div>
+
+                <div class="card-footer">
+                    <button type="submit" id="payment"
+                            class="subscribe btn btn-primary btn-block shadow-sm">
+                        Confirm Payment
+                    </button>
                 </div>
             </div>
         </div>
@@ -131,27 +151,30 @@ if (!isset($_SESSION['username'])) {
 <script type="text/javascript">
     $(document).ready(function () {
         $("#payment").click(function () {
-            var movie = $("#movie").val().trim();
-            var time = $("#time").val().trim();
-            var seats = $("#seats").val().trim();
-            var totalseats = $("#total-seats").val().trim();
-            var price = $("#price").val().trim();
+            let showtimeId = $("#showtimeId").val().trim();
+            let userId = $("#userId").val().trim();
+            let seats = $("#seats").val().trim();
+            let total_seats = $("#total-seats").val().trim();
+            let total_price = $("#total-price").val().trim();
+            let booking_date = $("#booking-date").val().trim();
 
             $.ajax({
                 url: 'payment_form.php',
                 type: 'post',
                 data: {
-                    movie: movie,
-                    time: time,
-                    seat: seats,
-                    totalseat: totalseats,
-                    price: price,
+                    showtimeId : showtimeId,
+                    userId : userId,
+                    seats : seats,
+                    total_seats : total_seats,
+                    total_price : total_price,
+                    booking_date : booking_date
                 },
                 success: function (response) {
+                    console.log(response)
                     if (response == 1) {
-                        window.location = "tickes.php";
+                        window.location = "ticket_show.php?msg=Booking successful";
                     } else {
-                        error = " <font color='red'>!Invalid UserId.</font> ";
+                        let error = "Booking unsuccessful";
                         document.getElementById("msg").innerHTML = error;
                         return false;
                     }

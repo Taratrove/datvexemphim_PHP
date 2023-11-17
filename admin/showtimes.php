@@ -181,7 +181,7 @@
 
                                                                 if (mysqli_num_rows($resultEditScreens) > 0) {
                                                                     while ($rowEditScreens = mysqli_fetch_array($resultEditScreens)) {
-                                                                        if ($rowEditScreens['id'] == $row['screen_name']) {
+                                                                        if ($rowEditScreens['id'] == $row['screen_id']) {
                                                                         ?>
                                                                         <option value="<?php echo $rowEditScreens['id']; ?>" selected><?php echo $rowEditScreens['screen_name']; ?></option>
                                                                         <?php
@@ -359,8 +359,8 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label>Price</label>
-                                <input type="number" class="form-control" name="edit-theater-address"
-                                       id="edit-theater-address"
+                                <input type="number" class="form-control" name="showtime-price"
+                                       id="showtime-price"
                                        placeholder="Enter Price" value="<?php echo $row['price']; ?>" required>
                             </div>
                         </div>
