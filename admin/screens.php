@@ -40,7 +40,7 @@
                     <tr>
                         <th>Id</th>
                         <th>Theater Name</th>
-                        <th>Screen Number</th>
+                        <th>Screen Name</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -219,7 +219,7 @@
                             <div class="form-group">
                                 <label>Screen Name</label>
                                 <input class="form-control" name="screen-name" id="screen-name"
-                                       placeholder="Enter Screen Number" required>
+                                       placeholder="Enter Screen Name" required>
                             </div>
                         </div>
 

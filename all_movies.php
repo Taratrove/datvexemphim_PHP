@@ -121,7 +121,7 @@ include("templates/header.php");
                 <div class="list-group px-3 py-1">
                     <h3 class="part-line">Search</h3>
                     <div class="input-group mb-3">
-                        <input type="text" name="search" id="search" class="form-control" placeholder="Nhập từ khóa"
+                        <input type="text" name="search" id="search" class="form-control" placeholder="Enter keywords..."
                                aria-label="Search" aria-describedby="search-icon">
                     </div>
                 </div>

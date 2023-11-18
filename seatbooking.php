@@ -79,7 +79,7 @@
 
 
 
-<h2>BOOK YOUR SEAT NOW</h2>
+<h2 class="mt-5">BOOK YOUR SEAT NOW</h2>
 
 <?php
 require_once("config/db_connect.php");
@@ -89,7 +89,7 @@ if (isset($_GET['showtimeId']) && isset($_GET['movieId'])) {
 
     $result = mysqli_query($conn, "SELECT * FROM booking WHERE showtime_id = '" . $showtimeId . "' && booking_date = '" . $date . "'");
 
-    $queryMovie = "SELECT movies.title, movies.image, DATE_FORMAT(showtimes.showtime, '%Y-%m-%d') AS show_date, DATE_FORMAT(showtimes.showtime, '%H:%i') AS show_time
+    $queryMovie = "SELECT movies.title, movies.image, showtimes.price, DATE_FORMAT(showtimes.showtime, '%Y-%m-%d') AS show_date, DATE_FORMAT(showtimes.showtime, '%H:%i') AS show_time
               FROM showtimes
               INNER JOIN movies ON showtimes.movie_id = movies.id
               WHERE showtimes.id = $showtimeId";
@@ -101,6 +101,7 @@ if (isset($_GET['showtimeId']) && isset($_GET['movieId'])) {
         $movieImage = $row['image'];
         $showDate = $row['show_date'];
         $showTime = $row['show_time'];
+        $showPrice = $row['price'];
     }
 
     $occupiedSeats = array();
@@ -120,7 +121,7 @@ if (isset($_GET['showtimeId']) && isset($_GET['movieId'])) {
 
         <div class="row">
             <div class="col-lg-7">
-                <div class="screen"></div>
+                <div class="screen mb-5"></div>
 
                 <div class="seats-container mx-auto">
                 <div class="row d-flex justify-content-center align-items-center">
@@ -155,24 +156,24 @@ if (isset($_GET['showtimeId']) && isset($_GET['movieId'])) {
                     </div>
                 </div>
 
-                <ul class="showcase">
+                <ul class="showcase mt-5">
                     <li>
                         <div class="seat"></div>
-                        <small>Available</small>
+                        <small class="text-white">Available</small>
                     </li>
                     <li>
                         <div class="seat-sample selected" style="background-color: #00FFFF"></div>
-                        <small>Selected</small>
+                        <small class="text-white">Selected</small>
                     </li>
                     <li>
                         <div class="seat-sample occupied" style="background-color: white"></div>
-                        <small>Occupied</small>
+                        <small class="text-white">Occupied</small>
                     </li>
                 </ul>
-                <p class="text">You have selected <span id="selected-count">0</span> seats for the price of $<span
+                <p class="text text-center mt-3">You have selected <span id="selected-count">0</span> seats for the price of $<span
                             id="selected-price">0</span></p>
 
-
+                <input type="hidden" name="total_price" value="">
                 <input type="hidden" name="showtimeId" value="<?php echo $showtimeId; ?>">
                 <div class="hr" style="border-bottom: 3px solid #FFA500;"></div>
 
@@ -251,48 +252,56 @@ if (isset($_GET['showtimeId']) && isset($_GET['movieId'])) {
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!--<script src="index.js"></script>-->
 <script>
+
     $(document).ready(function() {
         var selectedSeats = [];
         var maxSeats = 8;
+        var showPrice = <?php echo $showPrice; ?>;
+        var selectedPrice = 0; // Thêm biến selectedPrice
 
         $('.seat').click(function() {
-            var seat = $(this).data('seat');
+        var seat = $(this).data('seat');
 
-            if ($(this).hasClass('occupied')) {
-                return;
-            }
+        if ($(this).hasClass('occupied')) {
+        return;
+    }
 
-            if (selectedSeats.length >= maxSeats) {
-                if ($(this).hasClass('selected')) {
-                    $(this).removeClass('selected');
-                    selectedSeats = selectedSeats.filter(function(value) {
-                        return value !== seat;
-                    });
-                } else {
-                    document.getElementById('notvalid').innerHTML = "Maximum seat select 8";
-                    return;
-                }
-            } else {
-                $(this).toggleClass('selected');
-
-                if (selectedSeats.includes(seat)) {
-                    selectedSeats = selectedSeats.filter(function(value) {
-                        return value !== seat;
-                    });
-                } else {
-                    selectedSeats.push(seat);
-                }
-
-                let $sLength = selectedSeats.length;
-
-                $('#selected-count').text($sLength);
-                $('#count').val($sLength);
-                $('#selected-seats').val(selectedSeats.join(","));
-            }
-        });
+        if (selectedSeats.length >= maxSeats) {
+        if ($(this).hasClass('selected')) {
+        $(this).removeClass('selected');
+        selectedSeats = selectedSeats.filter(function(value) {
+        return value !== seat;
     });
+        selectedPrice -= showPrice;
+    } else {
+        document.getElementById('notvalid').innerHTML = "Maximum seat select 8";
+        return;
+    }
+    } else {
+        $(this).toggleClass('selected');
 
+        if (selectedSeats.includes(seat)) {
+        selectedSeats = selectedSeats.filter(function(value) {
+        return value !== seat;
+    });
+        selectedPrice -= showPrice;
+    } else {
+        selectedSeats.push(seat);
+        selectedPrice += showPrice;
+    }
 
+        let $sLength = selectedSeats.length;
+
+        $('#selected-count').text($sLength);
+        $('#count').val($sLength);
+        $('#selected-seats').val(selectedSeats.join(","));
+
+        $('input[name="total_price"]').val(selectedPrice.toFixed(2));
+    }
+
+        $('#selected-price').text(selectedPrice.toFixed(2));
+    });
+    });
 </script>
 
 <script src="assets/js/jquery-3.3.1.min.js"></script>

@@ -1,35 +1,32 @@
 <?php
 session_start();
-include "db_connect.php";
-if($_POST['card_name'] != '' && $_POST['card_number'] != '' && $_POST['ex_date'] != '' && $_POST['cvv'] != ''){
-	$movie = mysqli_real_escape_string($conn,$_POST['movie']);
-	$time = mysqli_real_escape_string($conn,$_POST['time']);
-	$seat = mysqli_real_escape_string($conn,$_POST['seat']);
-	$totalseat = mysqli_real_escape_string($conn,$_POST['totalseat']);
-	$price = mysqli_real_escape_string($conn,$_POST['price']);
-	$card_name = mysqli_real_escape_string($conn,$_POST['card_name']);
-	$card_number = mysqli_real_escape_string($conn,$_POST['card_number']);
-	$ex_date = mysqli_real_escape_string($conn,$_POST['ex_date']);
-	$cvv = mysqli_real_escape_string($conn,$_POST['cvv']);
+require_once ("config/db_connect.php");
 
-	$result = mysqli_query($conn,"SELECT * FROM user WHERE username = '".$_SESSION['uname']."'");
+    $showtimeId = mysqli_real_escape_string($conn, $_POST['showtimeId']);
+    $userId = mysqli_real_escape_string($conn, $_POST['userId']);
+    $seats = mysqli_real_escape_string($conn, $_POST['seats']);
+    $total_seats = mysqli_real_escape_string($conn, $_POST['total_seats']);
+    $total_price = mysqli_real_escape_string($conn, $_POST['total_price']);
+    $booking_date = mysqli_real_escape_string($conn, $_POST['booking_date']);
+
+	$result = mysqli_query($conn,"SELECT * FROM users WHERE username = '".$_SESSION['username']."'");
 	 if (mysqli_num_rows($result) > 0) {
       while($row = mysqli_fetch_array($result)) {
-      	$uid=$row['id'];
+      	    $uid=$row['id'];
       	}
       }
-      $custemer_id= mt_rand();
-      $payment = date("Y-m-d",strtotime('today'));
-      $booking = date("Y-m-d",strtotime('tomorrow'));
+
       
-      $_SESSION['custemer_id'] = $custemer_id;
-	$insert_record=mysqli_query($conn,"INSERT INTO booking (`uid`,`movie`,`show_time`,`seat`,`totalseat`,`price`,`payment_date`,`booking_date`,`card_name`,`card_number`,`ex_date`,`cvv`,`custemer_id`)VALUES('".$uid."','".$movie."','".$time."','".$seat."','".$totalseat."','".$price."','".$payment."','".$booking."','".$card_name."','".$card_number."','".$ex_date."','".$cvv."','".$custemer_id."')");
+//      $_SESSION['user_id'] = $userId;
+
+    $insertQuery = "INSERT INTO booking (showtime_id, user_id, seats, total_seats, total_price, booking_date) VALUES ('$showtimeId', '$userId', '$seats', '$total_seats', '$total_price', '$booking_date')";
+
+    $insert_record = mysqli_query($conn, $insertQuery);
 
 	if(!$insert_record)
 	{
-		echo 2;
+		echo 0;
 	}else{
+        $_SESSION['booking_id'] = mysqli_insert_id($conn);
 		echo 1;
-	}	
-}
-?>
+    }

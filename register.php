@@ -87,8 +87,7 @@ if (isset($_POST['check_username'])) {
                 VALUES ('$username', '$name', '$email', '$password', '$phone', '$birthday', '$new_filename')");
 
                 if ($insert_record) {
-                    $_SESSION['msg'] = "Đăng ký thành công";
-                    header("Location: index.php");
+                    header("Location: login.php?msg=Registration successful! Please log in.");
                     exit();
                 }
             } catch (Exception $e) {

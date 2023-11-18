@@ -61,6 +61,11 @@
                     <div class="loginholder">
                         <form id="loginForm" action="" method="POST">
                             <table style="background-color:white;" class="table-condensed">
+                                <?php if(isset($_GET['msg'])) {?>
+                                    <div class="alert alert-success" >
+                                        <?php echo $_GET['msg'] ?>
+                                    </div >
+                                <?php } ?>
                                 <tr>
                                     <a href="./index.html"><img src="assets/images/logo.png" alt="" width="180px"></a>
                                 </tr>
